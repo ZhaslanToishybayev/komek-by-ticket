@@ -1,79 +1,123 @@
 <x-layout>
-    <div class="hero-section">
+    {{-- Hero Section --}}
+    <section class="hero-section" style="background-image: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%), url('/images/background-poster.png');">
         <div class="container">
             <div class="hero-content">
                 <span class="badge">ПРЕМЬЕРА</span>
-                <h1>ОКЕАН ЗОВЕТ<br>АКВАМЕН</h1>
-                <p>СМОТРИТЕ В 3D И IMAX 3D С 13 ДЕКАБРЯ 12+</p>
-                <div class="hero-actions" style="display: flex; gap: 20px; margin-top: 30px;">
+                <h1 class="hero-title">
+                    <span>ОКЕАН ЗОВЕТ</span>
+                    <span>АКВАМЕН</span>
+                </h1>
+                <p class="hero-subtitle">СМОТРИТЕ В 3D И IMAX 3D С 13 ДЕКАБРЯ 12+</p>
+                <div class="hero-actions">
                     <button class="btn btn-red">Купить билет</button>
-                    <button class="btn btn-red" style="background: transparent; border: 2px solid #E53935; color: #E53935;">Трейлер</button>
+                    <button class="btn btn-trailer">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        Трейлер
+                    </button>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <section class="sessions-tabs container">
-        <div class="date-tabs" style="display: flex; gap: 15px; margin-bottom: 40px;">
-            <div class="tab active" style="background: #E53935; color: white; padding: 12px 25px; border-radius: 8px; text-align: center; cursor: pointer;">
-                <span class="day" style="display: block; font-weight: bold;">Сегодня</span>
-            </div>
-            <div class="tab" style="background: white; padding: 12px 25px; border-radius: 8px; text-align: center; border: 1px solid #ddd; cursor: pointer;">
-                <span class="day" style="display: block; font-weight: bold;">Завтра</span>
-                <span class="date" style="font-size: 12px; opacity: 0.7;">11 сент.</span>
-            </div>
-            <div class="tab" style="background: white; padding: 12px 25px; border-radius: 8px; text-align: center; border: 1px solid #ddd; cursor: pointer;">
-                <span class="day" style="display: block; font-weight: bold;">Вторник</span>
-                <span class="date" style="font-size: 12px; opacity: 0.7;">12 сент.</span>
             </div>
         </div>
     </section>
 
-    <div class="movie-grid container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding-bottom: 60px;">
-        @php
-            $movies = [
-                ['title' => 'Аквамен', 'genre' => 'фантастика, экшн', 'rating' => '12+', 'times' => ['10:00', '12:40', '15:20', '18:00']],
-                ['title' => 'Мэри Поппинс возвращается', 'genre' => 'мюзикл, семейный', 'rating' => '6+', 'times' => ['11:15', '14:00', '16:45']],
-                ['title' => 'Человек-паук: Через вселенные', 'genre' => 'мультфильм, экшн', 'rating' => '6+', 'times' => ['09:30', '12:00', '14:30', '17:00']],
-                ['title' => 'Гринч', 'genre' => 'мультфильм, комедия', 'rating' => '6+', 'times' => ['10:30', '13:00', '15:30']],
+    {{-- Date Tabs --}}
+    @php
+        $ruDays = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+        $ruMonths = ['', 'янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+        
+        $dates = [];
+        for ($i = 0; $i < 7; $i++) {
+            $current = now()->addDays($i);
+            $dayName = '';
+            
+            if ($i === 0) $dayName = 'Сегодня';
+            elseif ($i === 1) $dayName = 'Завтра';
+            else {
+                $dayOfWeek = $current->dayOfWeek;
+                $dayName = [
+                    0 => 'Воскресенье',
+                    1 => 'Понедельник',
+                    2 => 'Вторник',
+                    3 => 'Среда',
+                    4 => 'Четверг',
+                    5 => 'Пятница',
+                    6 => 'Суббота'
+                ][$dayOfWeek];
+            }
+            
+            $dates[] = [
+                'day' => $dayName,
+                'date' => $current->format('d') . ' ' . $ruMonths[$current->month],
+                'value' => $current->format('Y-m-d')
             ];
-        @endphp
+        }
+    @endphp
+    <x-date-tabs :dates="$dates" />
 
-        @foreach($movies as $movie)
-            <x-movie-card :movie="$movie" />
-        @endforeach
-    </div>
+    {{-- Movies Grid --}}
+    <section class="movies-section">
+        <div class="container">
+            @php
+                $movies = [
+                    [
+                        'title' => 'Аквамен и потерянное царство',
+                        'image' => '/images/spiderman.png',
+                        'rating' => '12+',
+                        'tags' => ['экшен', 'приключения', 'фантастика'],
+                        'sessions' => [
+                            ['time' => '10:00', 'format' => '2D', 'price' => '1200'],
+                            ['time' => '12:40', 'format' => '3D', 'price' => '1600'],
+                            ['time' => '15:20', 'format' => 'IMAX', 'price' => '2400'],
+                            ['time' => '17:40', 'format' => '2D', 'price' => '1400'],
+                            ['time' => '20:00', 'format' => '3D', 'price' => '1800'],
+                            ['time' => '22:30', 'format' => '2D', 'price' => '1200'],
+                        ]
+                    ],
+                    [
+                        'title' => 'Мэри Поппинс возвращается',
+                        'image' => '/images/spiderman.png',
+                        'rating' => '6+',
+                        'tags' => ['мюзикл', 'семейный', 'фэнтези'],
+                        'sessions' => [
+                            ['time' => '11:00', 'format' => '2D', 'price' => '1000'],
+                            ['time' => '14:00', 'format' => '2D', 'price' => '1200'],
+                            ['time' => '17:00', 'format' => '2D', 'price' => '1400'],
+                        ]
+                    ],
+                    [
+                        'title' => 'Человек-паук: Через вселенные',
+                        'image' => '/images/spiderman.png',
+                        'rating' => '6+',
+                        'tags' => ['мультфильм', 'экшен', 'приключения'],
+                        'sessions' => [
+                            ['time' => '09:30', 'format' => '2D', 'price' => '900'],
+                            ['time' => '12:00', 'format' => '3D', 'price' => '1400'],
+                            ['time' => '14:30', 'format' => '2D', 'price' => '1200'],
+                            ['time' => '17:00', 'format' => 'IMAX', 'price' => '2200'],
+                            ['time' => '19:30', 'format' => '3D', 'price' => '1600'],
+                        ]
+                    ],
+                    [
+                        'title' => 'Гринч',
+                        'image' => '/images/spiderman.png',
+                        'rating' => '6+',
+                        'tags' => ['мультфильм', 'комедия', 'семейный'],
+                        'sessions' => [
+                            ['time' => '10:30', 'format' => '2D', 'price' => '800'],
+                            ['time' => '13:00', 'format' => '2D', 'price' => '1000'],
+                            ['time' => '15:30', 'format' => '3D', 'price' => '1400'],
+                        ]
+                    ],
+                ];
+            @endphp
+
+            <div class="movie-grid">
+                @foreach($movies as $movie)
+                    <x-movie-card :movie="$movie" />
+                @endforeach
+            </div>
+        </div>
+    </section>
 </x-layout>
-
-<style>
-.hero-section {
-    height: 600px;
-    background-image: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%), url('https://w.forfun.com/fetch/5d/5d985a11c1615c13e0c03426727da7c5.jpeg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-}
-.hero-content {
-    max-width: 600px;
-}
-.hero-content .badge {
-    background: #E53935;
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: bold;
-}
-.hero-content h1 {
-    font-size: 64px;
-    margin: 20px 0;
-    line-height: 1;
-}
-.hero-content p {
-    font-size: 18px;
-    margin-bottom: 30px;
-    opacity: 0.9;
-}
-</style>

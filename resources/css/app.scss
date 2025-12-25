@@ -1,27 +1,48 @@
-$primary-red: #E53935;
+// ==============================
+// KOMEK BY TICKET - Figma Design
+// ==============================
+
+// Color Variables
+$primary-red: #E92B43;
 $primary-green: #4CAF50;
 $dark-teal: #1A2B33;
 $light-bg: #FFFFFF;
-$text-black: #212121;
-$text-gray: #757575;
+$text-primary: #19191D;
+$text-secondary: #727276;
+$text-muted: #9C9CA4;
+$border-color: #E7E7EC;
+$tag-bg: #F2F2F5;
+$session-bg: #FFF9FA;
+$session-border: #E92B43;
 
-body {
+// Typography
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+
+* {
     margin: 0;
     padding: 0;
-    font-family: "Inter", system-ui, -apple-system, sans-serif;
-    color: $text-black;
-    background-color: #000;
-    min-height: 100vh;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: 'Roboto', 'Inter', system-ui, -apple-system, sans-serif;
+    color: $text-primary;
+    background-color: #000;
+    min-height: 100vh;
+    line-height: 1.4;
+}
+
+// ===================
+// Layout
+// ===================
 .page-wrapper {
     position: relative;
     z-index: 1;
-    background-color: rgba(255, 255, 255, 0.9);
-    max-width: 1440px;
+    background-color: #fff;
+    max-width: 1920px;
     margin: 0 auto;
-    box-shadow: 0 0 50px rgba(0,0,0,0.5);
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .collage-bg {
@@ -34,31 +55,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://w.forfun.com/fetch/5d/5d985a11c1615c13e0c03426727da7c5.jpeg");
-}
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 24px;
-    border-radius: 4px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: none;
-    text-transform: uppercase;
-    font-size: 13px;
-    text-decoration: none;
-
-    &-red {
-        background-color: $primary-red;
-        color: white;
-        &:hover {
-            background-color: darken($primary-red, 5%);
-            box-shadow: 0 4px 12px rgba(229, 57, 53, 0.4);
-        }
-    }
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/background-poster.png');
 }
 
 .container {
@@ -68,6 +65,804 @@ body {
     padding: 0 20px;
 }
 
-.d-flex { display: flex; }
-.justify-between { justify-content: space-between; }
-.items-center { align-items: center; }
+// Utility Classes
+.d-flex {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.gap-20 {
+    gap: 20px;
+}
+
+// ===================
+// Buttons
+// ===================
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: none;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &-red {
+        background-color: $primary-red;
+        color: white;
+
+        &:hover {
+            background-color: darken($primary-red, 8%);
+            box-shadow: 0 4px 15px rgba($primary-red, 0.4);
+            transform: translateY(-2px);
+        }
+    }
+
+    &-outline {
+        background: transparent;
+        border: 1px solid $border-color;
+        color: $text-primary;
+
+        &:hover {
+            border-color: $primary-red;
+            color: $primary-red;
+        }
+    }
+
+    &-trailer {
+        background: transparent;
+        border: 2px solid $primary-red;
+        color: $primary-red;
+        gap: 10px;
+
+        &:hover {
+            background: $primary-red;
+            color: white;
+        }
+
+        svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+    }
+}
+
+// ===================
+// Header
+// ===================
+.main-header {
+    .top-bar {
+        background: $dark-teal;
+        color: white;
+        padding: 12px 0;
+        font-size: 13px;
+
+        .top-bar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .branding {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 16px;
+            font-weight: 700;
+
+            .logo-komek {
+                color: $primary-green;
+            }
+
+            .logo-ticket {
+                color: white;
+            }
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.9;
+
+            svg {
+                width: 16px;
+                height: 16px;
+                fill: currentColor;
+            }
+        }
+
+        .contacts {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .label {
+                opacity: 0.6;
+            }
+        }
+    }
+
+    .nav-bar {
+        background: white;
+        padding: 16px 0;
+        border-bottom: 1px solid $border-color;
+        position: relative; // Added for mobile menu positioning
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0;
+
+            &.mobile-open {
+                display: flex !important;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+                border-top: 1px solid $border-color;
+
+                li {
+                    width: 100%;
+
+                    a {
+                        padding: 12px 20px;
+                        width: 100%;
+                        border-radius: 0;
+
+                        &.active {
+                            &::after {
+                                bottom: 0;
+                                left: 0;
+                                right: auto;
+                                width: 4px;
+                                height: 100%;
+                                border-radius: 0 2px 2px 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            li {
+                position: relative;
+
+                a {
+                    display: block;
+                    padding: 8px 16px;
+                    text-decoration: none;
+                    color: $text-primary;
+                    font-weight: 500;
+                    font-size: 14px;
+                    transition: color 0.2s;
+                    border-radius: 5px;
+
+                    &:hover {
+                        color: $primary-red;
+                        background: rgba($primary-red, 0.05);
+                    }
+
+                    &.active {
+                        color: $primary-red;
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            bottom: -16px;
+                            left: 16px;
+                            right: 16px;
+                            height: 3px;
+                            background: $primary-red;
+                            border-radius: 2px 2px 0 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+        }
+    }
+}
+
+// Mobile Menu Button
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+
+    span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: $text-primary;
+        margin: 5px 0;
+        transition: 0.3s;
+    }
+}
+
+// ===================
+// Hero Section
+// ===================
+.hero-section {
+    position: relative;
+    height: 500px;
+    background-size: cover;
+    background-position: center top;
+    color: white;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.1) 100%);
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 550px;
+        padding: 40px 0;
+    }
+
+    .badge {
+        display: inline-block;
+        background: $primary-red;
+        padding: 6px 16px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+    }
+
+    .hero-title {
+        font-size: 72px;
+        font-weight: 700;
+        line-height: 1.05;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+
+        span {
+            display: block;
+        }
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 30px;
+        letter-spacing: 0.5px;
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: 16px;
+
+        .btn {
+            padding: 12px 28px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+}
+
+// ===================
+// Date Tabs
+// ===================
+.date-tabs-section {
+    padding: 40px 0 30px;
+}
+
+.date-tabs {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+
+    &::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $border-color;
+        border-radius: 2px;
+    }
+}
+
+.date-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: fit-content;
+    background: white;
+    border: 1px solid $border-color;
+
+    &:hover {
+        border-color: $primary-red;
+    }
+
+    &.active {
+        background: $primary-red;
+        border-color: $primary-red;
+        color: white;
+
+        .date-day {
+            color: white;
+        }
+
+        .date-num {
+            color: rgba(255, 255, 255, 0.8);
+        }
+    }
+
+    .date-day {
+        font-weight: 600;
+        font-size: 14px;
+        color: $text-primary;
+    }
+
+    .date-num {
+        font-size: 12px;
+        color: $text-secondary;
+        margin-top: 2px;
+    }
+}
+
+// ===================
+// Movie Grid
+// ===================
+.movies-section {
+    padding-bottom: 60px;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+// ===================
+// Movie Card
+// ===================
+.movie-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+
+        .movie-poster img {
+            transform: scale(1.05);
+        }
+    }
+
+    .movie-poster {
+        position: relative;
+        aspect-ratio: 279 / 400;
+        overflow: hidden;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .movie-rating {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: $primary-green;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+    }
+
+    .movie-info {
+        padding: 16px;
+    }
+
+    .movie-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: $text-primary;
+    }
+
+    .movie-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 16px;
+    }
+
+    .movie-tag {
+        background: $tag-bg;
+        color: $text-secondary;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+    }
+
+    .movie-sessions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    &.animate-in {
+        animation: fadeInUp 0.5s ease forwards;
+    }
+}
+
+// ===================
+// Session Time Card
+// ===================
+.session-card {
+    background: $session-bg;
+    border: 1px solid rgba($session-border, 0.2);
+    border-radius: 6px;
+    padding: 10px 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        border-color: $primary-red;
+        background: rgba($primary-red, 0.08);
+        transform: scale(1.02);
+    }
+
+    .session-time {
+        font-size: 15px;
+        font-weight: 600;
+        color: $text-primary;
+        margin-bottom: 4px;
+    }
+
+    .session-format {
+        font-size: 11px;
+        color: $text-secondary;
+        margin-bottom: 2px;
+    }
+
+    .session-price {
+        font-size: 12px;
+        color: $text-secondary;
+    }
+
+    &.selected {
+        border-color: $primary-red !important;
+        background: rgba($primary-red, 0.1) !important;
+    }
+}
+
+// ===================
+// Footer
+// ===================
+.footer {
+    background: $dark-teal;
+    color: white;
+    padding: 50px 0 30px;
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+
+    .footer-brand {
+        .branding {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+
+            .logo-komek {
+                color: $primary-green;
+            }
+
+            .logo-ticket {
+                color: white;
+            }
+        }
+
+        .footer-address {
+            font-size: 13px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+    }
+
+    .footer-column {
+        h4 {
+            color: $primary-green;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        ul {
+            list-style: none;
+
+            li {
+                margin-bottom: 10px;
+
+                a {
+                    color: rgba(255, 255, 255, 0.8);
+                    text-decoration: none;
+                    font-size: 13px;
+                    transition: color 0.2s;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+    }
+
+    .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .copyright {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 12px;
+
+            img {
+                height: 24px;
+                opacity: 0.8;
+                transition: opacity 0.2s;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+// ===================
+// Responsive Design
+// ===================
+@media (max-width: 1200px) {
+    .movie-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .footer .footer-content {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 992px) {
+    .movie-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-section {
+        height: 450px;
+
+        .hero-title {
+            font-size: 52px;
+        }
+    }
+
+    .main-header {
+        .nav-bar .nav-links {
+            display: none;
+        }
+
+        .mobile-menu-btn {
+            display: block;
+        }
+    }
+
+    .footer .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        .top-bar {
+            .top-bar-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .location,
+            .contacts {
+                font-size: 12px;
+            }
+        }
+
+        .nav-bar {
+            .nav-content {
+                justify-content: center;
+            }
+
+            .nav-actions {
+                display: none;
+            }
+        }
+    }
+
+    .hero-section {
+        height: 400px;
+
+        .hero-title {
+            font-size: 36px;
+        }
+
+        .hero-subtitle {
+            font-size: 13px;
+        }
+
+        .hero-actions {
+            flex-direction: column;
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    }
+
+    .date-tabs {
+        justify-content: flex-start;
+        padding: 0 20px 10px;
+        margin: 0 -20px;
+    }
+
+    .movie-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .movie-card {
+        .movie-sessions {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    .footer {
+        padding: 40px 0 20px;
+
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 30px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        height: 350px;
+
+        .hero-title {
+            font-size: 28px;
+        }
+
+        .badge {
+            font-size: 10px;
+            padding: 4px 12px;
+        }
+    }
+
+    .movie-card .movie-sessions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .date-tab {
+        padding: 10px 18px;
+
+        .date-day {
+            font-size: 13px;
+        }
+    }
+}
+
+// ===================
+// Animations
+// ===================
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.movie-card {
+    animation: fadeInUp 0.5s ease forwards;
+
+    @for $i from 1 through 12 {
+        &:nth-child(#{$i}) {
+            animation-delay: #{$i * 0.1}s;
+        }
+    }
+}

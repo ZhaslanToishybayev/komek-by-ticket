@@ -1,17 +1,40 @@
-@props(["movie"])
-<div class="movie-card" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
-    <div style="position: relative; padding-top: 150%; background: #eee;">
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-weight: bold;">{{ $movie["rating"] }}</div>
+@props(['movie'])
+
+<div class="movie-card">
+    <div class="movie-poster">
+        @if(isset($movie['image']))
+            <img src="{{ $movie['image'] }}" alt="{{ $movie['title'] }}" loading="lazy">
+        @else
+            <img src="/images/spiderman.png" alt="{{ $movie['title'] }}" loading="lazy">
+        @endif
+        <span class="movie-rating">{{ $movie['rating'] ?? '12+' }}</span>
     </div>
-    <div style="padding: 20px;">
-        <h3 style="margin: 0;">{{ $movie["title"] }}</h3>
-        <p style="color: #757575; font-size: 13px;">{{ $movie["genre"] }}</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            @foreach($movie["times"] as $time)
-                <div style="border: 1px solid #ddd; padding: 5px; text-align: center; border-radius: 4px;">
-                    <strong>{{ $time }}</strong><br><small>1200 тг</small>
-                </div>
-            @endforeach
+    <div class="movie-info">
+        <h3 class="movie-title">{{ $movie['title'] }}</h3>
+        <div class="movie-tags">
+            @if(isset($movie['tags']))
+                @foreach($movie['tags'] as $tag)
+                    <span class="movie-tag">{{ $tag }}</span>
+                @endforeach
+            @else
+                <span class="movie-tag">экшен</span>
+                <span class="movie-tag">приключения</span>
+            @endif
+        </div>
+        <div class="movie-sessions">
+            @if(isset($movie['sessions']))
+                @foreach($movie['sessions'] as $session)
+                    <x-session-time :session="$session" />
+                @endforeach
+            @else
+                @foreach($movie['times'] ?? ['10:00', '12:40', '15:20'] as $time)
+                    <div class="session-card">
+                        <div class="session-time">{{ $time }}</div>
+                        <div class="session-format">2D</div>
+                        <div class="session-price">1200 ₸</div>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
 </div>
