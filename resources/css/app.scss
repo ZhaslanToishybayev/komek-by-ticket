@@ -28,6 +28,11 @@ body {
     font-family: 'Roboto', 'Inter', system-ui, -apple-system, sans-serif;
     color: $text-primary;
     background-color: #000;
+    background-image: url('/images/background-poster.png');
+    background-position: center top;
+    background-repeat: repeat-y;
+    background-size: 1920px auto;
+    background-attachment: fixed;
     min-height: 100vh;
     line-height: 1.4;
 }
@@ -39,23 +44,15 @@ body {
     position: relative;
     z-index: 1;
     background-color: #fff;
-    max-width: 1920px;
+    max-width: 1240px; // Match container width to show sides
     margin: 0 auto;
     min-height: 100vh;
     overflow-x: hidden;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
 }
 
 .collage-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/background-poster.png');
+    display: none;
 }
 
 .container {
@@ -149,7 +146,7 @@ body {
 // ===================
 .main-header {
     .top-bar {
-        background: $dark-teal;
+        background: #0D3B3F; // Dark teal as in Figma
         color: white;
         padding: 12px 0;
         font-size: 13px;
@@ -519,9 +516,15 @@ body {
 
     .movie-title {
         font-size: 16px;
-        font-weight: 600;
+        font-weight: 700;
         margin-bottom: 8px;
-        color: $text-primary;
+        color: #0066FF; // Blue as in Figma
+        text-decoration: none;
+        display: block;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 
     .movie-tags {
@@ -554,41 +557,52 @@ body {
 // Session Time Card
 // ===================
 .session-card {
-    background: $session-bg;
-    border: 1px solid rgba($session-border, 0.2);
-    border-radius: 6px;
-    padding: 10px 8px;
+    background: #E1261C; // Bright red as in Figma
+    border: none;
+    border-radius: 8px;
+    padding: 12px 8px;
     text-align: center;
     cursor: pointer;
     transition: all 0.2s ease;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
 
     &:hover {
-        border-color: $primary-red;
-        background: rgba($primary-red, 0.08);
-        transform: scale(1.02);
-    }
-
-    .session-time {
-        font-size: 15px;
-        font-weight: 600;
-        color: $text-primary;
-        margin-bottom: 4px;
-    }
-
-    .session-format {
-        font-size: 11px;
-        color: $text-secondary;
-        margin-bottom: 2px;
-    }
-
-    .session-price {
-        font-size: 12px;
-        color: $text-secondary;
+        background: darken(#E1261C, 10%);
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(225, 38, 28, 0.4);
     }
 
     &.selected {
-        border-color: $primary-red !important;
-        background: rgba($primary-red, 0.1) !important;
+        background: darken(#E1261C, 20%) !important;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .session-time {
+        font-size: 16px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 0px;
+    }
+
+    .session-price {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 400;
+    }
+
+    .session-format {
+        display: none;
+    }
+
+    .session-hall {
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 }
 

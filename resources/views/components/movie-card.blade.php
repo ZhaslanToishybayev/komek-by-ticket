@@ -28,11 +28,7 @@
                 @endforeach
             @else
                 @foreach($movie['times'] ?? ['10:00', '12:40', '15:20'] as $time)
-                    <div class="session-card">
-                        <div class="session-time">{{ $time }}</div>
-                        <div class="session-format">2D</div>
-                        <div class="session-price">1200 ₸</div>
-                    </div>
+                    <x-session-time :session="['time' => $time, 'price' => '1200', 'hall' => 'Зал 1']" />
                 @endforeach
             @endif
         </div>

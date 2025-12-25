@@ -67,12 +67,12 @@
                         'rating' => '12+',
                         'tags' => ['экшен', 'приключения', 'фантастика'],
                         'sessions' => [
-                            ['time' => '10:00', 'format' => '2D', 'price' => '1200'],
-                            ['time' => '12:40', 'format' => '3D', 'price' => '1600'],
-                            ['time' => '15:20', 'format' => 'IMAX', 'price' => '2400'],
-                            ['time' => '17:40', 'format' => '2D', 'price' => '1400'],
-                            ['time' => '20:00', 'format' => '3D', 'price' => '1800'],
-                            ['time' => '22:30', 'format' => '2D', 'price' => '1200'],
+                            ['time' => '10:00', 'format' => '2D', 'price' => '1200', 'hall' => 'Зал 1'],
+                            ['time' => '12:40', 'format' => '3D', 'price' => '1600', 'hall' => 'Зал 2'],
+                            ['time' => '15:20', 'format' => 'IMAX', 'price' => '2400', 'hall' => 'IMAX Зал'],
+                            ['time' => '17:40', 'format' => '2D', 'price' => '1400', 'hall' => 'Зал 1'],
+                            ['time' => '20:00', 'format' => '3D', 'price' => '1800', 'hall' => 'Зал 2'],
+                            ['time' => '22:30', 'format' => '2D', 'price' => '1200', 'hall' => 'Зал 3'],
                         ]
                     ],
                     [
@@ -81,9 +81,9 @@
                         'rating' => '6+',
                         'tags' => ['мюзикл', 'семейный', 'фэнтези'],
                         'sessions' => [
-                            ['time' => '11:00', 'format' => '2D', 'price' => '1000'],
-                            ['time' => '14:00', 'format' => '2D', 'price' => '1200'],
-                            ['time' => '17:00', 'format' => '2D', 'price' => '1400'],
+                            ['time' => '11:00', 'format' => '2D', 'price' => '1000', 'hall' => 'Зал 1'],
+                            ['time' => '14:00', 'format' => '2D', 'price' => '1200', 'hall' => 'Зал 1'],
+                            ['time' => '17:00', 'format' => '2D', 'price' => '1400', 'hall' => 'Зал 2'],
                         ]
                     ],
                     [
@@ -92,11 +92,11 @@
                         'rating' => '6+',
                         'tags' => ['мультфильм', 'экшен', 'приключения'],
                         'sessions' => [
-                            ['time' => '09:30', 'format' => '2D', 'price' => '900'],
-                            ['time' => '12:00', 'format' => '3D', 'price' => '1400'],
-                            ['time' => '14:30', 'format' => '2D', 'price' => '1200'],
-                            ['time' => '17:00', 'format' => 'IMAX', 'price' => '2200'],
-                            ['time' => '19:30', 'format' => '3D', 'price' => '1600'],
+                            ['time' => '09:30', 'format' => '2D', 'price' => '900', 'hall' => 'Зал 3'],
+                            ['time' => '12:00', 'format' => '3D', 'price' => '1400', 'hall' => 'Зал 2'],
+                            ['time' => '14:30', 'format' => '2D', 'price' => '1200', 'hall' => 'Зал 1'],
+                            ['time' => '17:00', 'format' => 'IMAX', 'price' => '2200', 'hall' => 'IMAX Зал'],
+                            ['time' => '19:30', 'format' => '3D', 'price' => '1600', 'hall' => 'Зал 2'],
                         ]
                     ],
                     [
@@ -105,9 +105,9 @@
                         'rating' => '6+',
                         'tags' => ['мультфильм', 'комедия', 'семейный'],
                         'sessions' => [
-                            ['time' => '10:30', 'format' => '2D', 'price' => '800'],
-                            ['time' => '13:00', 'format' => '2D', 'price' => '1000'],
-                            ['time' => '15:30', 'format' => '3D', 'price' => '1400'],
+                            ['time' => '10:30', 'format' => '2D', 'price' => '800', 'hall' => 'Зал 3'],
+                            ['time' => '13:00', 'format' => '2D', 'price' => '1000', 'hall' => 'Зал 2'],
+                            ['time' => '15:30', 'format' => '3D', 'price' => '1400', 'hall' => 'Зал 1'],
                         ]
                     ],
                 ];

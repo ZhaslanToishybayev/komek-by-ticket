@@ -12,7 +12,6 @@
     @vite(["resources/css/app.scss", "resources/js/app.js"])
 </head>
 <body>
-    <div class="collage-bg"></div>
     <div class="page-wrapper">
         <x-header />
         <main>{{ $slot }}</main>
