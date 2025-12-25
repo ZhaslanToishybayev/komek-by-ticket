@@ -1,6 +1,6 @@
 <x-layout>
     {{-- Hero Section --}}
-    <section class="hero-section" style="background-image: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%), url('/images/background-poster.png');">
+    <section class="hero-section" style="background-image: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%), url('/images/hero-banner.jpg');">
         <div class="container">
             <div class="hero-content">
                 <span class="badge">ПРЕМЬЕРА</span>
@@ -63,7 +63,7 @@
                 $movies = [
                     [
                         'title' => 'Аквамен и потерянное царство',
-                        'image' => '/images/spiderman.png',
+                        'image' => '/images/aquaman.jpg',
                         'rating' => '12+',
                         'tags' => ['экшен', 'приключения', 'фантастика'],
                         'sessions' => [
@@ -101,7 +101,7 @@
                     ],
                     [
                         'title' => 'Гринч',
-                        'image' => '/images/spiderman.png',
+                        'image' => '/images/grinch.jpg',
                         'rating' => '6+',
                         'tags' => ['мультфильм', 'комедия', 'семейный'],
                         'sessions' => [
